@@ -1,0 +1,36 @@
+.footer{
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+   
+}
+
+.botao{
+    background-color: rgb(15, 15, 22);
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+    padding: 5px;
+    margin: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.andamento{
+    color: gray;
+    
+    
+}
+
+.concluidos{
+    color: green; 
+}
+
+.fraca{
+    color: rgb(116, 47, 47);  
+}
+
+
+.botons{
+    margin: auto;
+}

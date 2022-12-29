@@ -1,0 +1,125 @@
+.body{
+   
+}
+
+.notas{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.adicionar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carta{
+    background-color: rgb(63, 63, 95);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.titulo{
+    font-size: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+.bb{
+    background-color: rgb(112, 31, 31);
+    border-style: none;
+    padding: 8px;
+    border-radius: 5px;
+    
+}
+
+.con{
+    border-style: none;
+    padding: 8px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: rgb(75, 112, 75);
+    
+}
+
+.f{
+    margin-left:60px;
+    display: inline-block;
+}
+
+.fra{
+    background-color: rgb(68, 42, 42);
+    border-style: none;
+    padding: 8px;
+    border-radius: 5px;
+    
+}
+
+.up{
+    border-style: none;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: rgb(69, 134, 134);
+    margin-left: 5px;
+}
+
+textarea{
+    width: 100%;
+    height: 130px;
+    font-size: 14px;
+    color: #666;
+    border: 0;
+    background-color: #fff;
+    resize: none;
+}
+
+
+.nome{
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(65, 65, 105);
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+
+}
+
+
+.meta{
+    border-radius: 10px;
+    background-color: rgb(44, 44, 75);
+    color: white;
+    border-style: none;
+}
+
+.data{
+    margin: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+}
+
+.titu{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.enviar{
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    cursor: pointer;
+}
+
+.enviar:hover{
+    background-color: rgb(85, 84, 84);
+}
+
+.carta2{
+    padding: 20px;
+}

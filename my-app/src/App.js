@@ -1,10 +1,14 @@
 import './App.css';
-
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import Body from './components/Body/Body';
 
 function App() {
   return (
     <div className="App">
-       metaTartget
+       <Header/>
+       <Body></Body>
+       <Footer></Footer>
     </div>
   );
 }
