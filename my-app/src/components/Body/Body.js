@@ -4,22 +4,44 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useState,useEffect } from "react";
 import axios from "axios";
-
+import './footer.css'
 
 function Body(){
 
+    const [estado,setEstado] = useState('/')
 
     useEffect(()=>{
         getAllMetas()
     },[])
-
    
 
     async function getAllMetas(){
-        const response = await axios.get('http://localhost:5000/')
+        const response = await axios.get(`http://localhost:5000/`)
         setAllTasks(response.data)
+        setEstado('/')
     }
 
+    async function getAllConclu(){
+        const response = await axios.get(`http://localhost:5000/realizado`)
+        setAllTasks(response.data)
+        setEstado('realizado')
+    }
+
+
+    async function getAllAnda(){
+        const response = await axios.get(`http://localhost:5000/andamento`)
+        setAllTasks(response.data)
+        setEstado('andamento')
+    }
+
+
+    async function getAllFraca(){
+        const response = await axios.get(`http://localhost:5000/fracassada`)
+        setAllTasks(response.data)
+        setEstado('fracassada')
+    }
+    
+    
     const [nome,setNome] = useState('')
     const [tarefa, setTarefa] = useState('')
     const [tempo, setData]= useState('')
@@ -27,10 +49,8 @@ function Body(){
     
 
     async function handleSubmit(e){
-
-     
         
-       const response = await axios.post('http://localhost:5000/submit',{
+       const response = await axios.post(`http://localhost:5000/submit`,{
             nome:nome,
             tarefa:tarefa,
             tempo:tempo
@@ -40,8 +60,9 @@ function Body(){
         setTarefa('')
         setData('')
 
-        
     }
+
+   
 
     async function deletarTask(id){
         const deleted = await axios.delete(`http://localhost:5000/deleteTask/${id}`)
@@ -115,10 +136,8 @@ function Body(){
                                 <form className="form1" onSubmit={()=>updateTasks(t.id)}>
                                    <Button type="submit"  className="up g">editar</Button>  
                                 </form>
-
                                 <form className="form1" onSubmit={()=>deletarTask(t.id)}>
                                     <Button name="id" type={'submit'}  className="bb g" >deletar</Button> 
-
                                 </form>                                
                               
                             
@@ -127,11 +146,22 @@ function Body(){
                                     <Button onClick={()=>handleState(t.id,'fracassada')} type="submit" className="fra g">fracassada</Button>      
                                     <Button onClick={()=>handleState(t.id,'realizado')} type="submit" className="con g">sucesso</Button> 
                                 </form>
-                            </div>               
+                            </div>
+                            
+                                            
                         </Card.Body>
+                         
                     </Card>  
+                    
                 )}
-
+                 <div className="footer">
+                        <div className="botons">
+                            <button onClick={getAllMetas}  className="botao">todos</button>
+                            <button onClick={getAllAnda}  className="botao andamento">em andamento</button>
+                            <button onClick={getAllConclu}  className="botao concluidos">concluidos</button>
+                            <button onClick={getAllFraca}  className="botao fraca">fracassados</button>
+                        </div>
+                  </div> 
             </div>              
         </div>
     )

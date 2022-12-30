@@ -13,6 +13,46 @@ let showall = (req,res)=>{
         }
     })
 }
+
+let showafailed = (req,res)=>{
+    let SQL = "SELECT *FROM meta WHERE realizado = 'fracassada'"
+
+    sql.query(SQL,(error,result)=>{
+        if(error){
+            console.log(error)
+        }else{
+            res.send(result)
+        }
+    })
+}
+
+
+let showaAndamento = (req,res)=>{
+    let SQL = "SELECT *FROM meta WHERE realizado = 'andamento'"
+
+    sql.query(SQL,(error,result)=>{
+        if(error){
+            console.log(error)
+        }else{
+            res.send(result)
+        }
+    })
+}
+    
+
+let showaSuccess = (req,res)=>{
+    let SQL = "SELECT *FROM meta WHERE realizado = 'realizado'"
+
+    sql.query(SQL,(error,result)=>{
+        if(error){
+            console.log(error)
+        }else{
+            res.send(result)
+        }
+    })
+}
+    
+    
     
  let  submitMeta = (req,res)=>{
 
@@ -87,4 +127,4 @@ let editState = (req,res)=>{
     }) 
 }
     
-module.exports = {showall,submitMeta,deleteTask,editar,editState}  
+module.exports = {showall,submitMeta,deleteTask,editar,editState,showaSuccess,showafailed,showaAndamento}  
