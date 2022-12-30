@@ -75,6 +75,10 @@ h3{
     margin-left: 5px;
 }
 
+.form1{
+    display: inline-block;
+}
+
 textarea{
     width: 100%;
     height: 130px;
@@ -130,5 +134,10 @@ textarea{
 }
 
 .carta2{
+    
+}
+
+.nombre{
     padding: 20px;
+    font-size: 20px;
 }

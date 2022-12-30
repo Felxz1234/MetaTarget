@@ -5,14 +5,15 @@ import Button from 'react-bootstrap/Button';
 import { useState,useEffect } from "react";
 import axios from "axios";
 
+
 function Body(){
+
 
     useEffect(()=>{
         getAllMetas()
     },[])
 
-
-    const [tasks, setAllTasks] = useState([])
+   
 
     async function getAllMetas(){
         const response = await axios.get('http://localhost:5000/')
@@ -22,6 +23,8 @@ function Body(){
     const [nome,setNome] = useState('')
     const [tarefa, setTarefa] = useState('')
     const [tempo, setData]= useState('')
+    const [tasks, setAllTasks] = useState([])
+    const[realizado,setRealizado] = useState('')
 
     async function handleSubmit(e){
 
@@ -38,11 +41,19 @@ function Body(){
         setData('')
 
         
-
     }
 
     async function deletarTask(id){
         const deleted = await axios.delete(`http://localhost:5000/deleteTask/${id}`)
+
+    }
+
+
+    async function updateTasks(id){
+        const response = await axios.post(`http://localhost:5000/editar/${id}`,{
+            nome:nome,
+            tarefa:tarefa
+        })
     }
 
     function handleChangeName(e){
@@ -90,21 +101,27 @@ function Body(){
                 {tasks.map((t)=>
                     <Card className="carta" style={{ width: '18rem' }}>
                         <Card.Body>
-                            <Card.Title className="titu ">{t.nome}</Card.Title>
+                            <Card.Title className=""><input onChange={handleChangeName} className="nombre" name="nome"  placeholder={t.nome}></input></Card.Title>
                             <h3>termine até:</h3>
                             <h3>{t.tempo}</h3>
                             <Card.Text>
-                            <textarea>{t.tarefa}</textarea>
+                            <textarea onChange={handleChangeTask}>{t.tarefa}</textarea>
                             </Card.Text>
-                                <Button className="up g">editar</Button>  
-                                
-                                <Button name="id" onClick={()=>deletarTask(t.id)} className="bb g" >deletar</Button> 
-                                
+                                <form className="form1" onSubmit={()=>updateTasks(t.id)}>
+                                   <Button type="submit"  className="up g">editar</Button>  
+                                </form>
+
+                                <form className="form1" onSubmit={()=>deletarTask(t.id)}>
+                                    <Button name="id" type={'submit'}  className="bb g" >deletar</Button> 
+
+                                </form>                                
                               
                             
                             <div className="f">
-                                <Button className="fra g">fracassada</Button>      
-                                <Button className="con g">sucesso</Button> 
+                                <form onSubmit={handleState}>
+                                    <Button type="submit" className="fra g">fracassada</Button>      
+                                    <Button type="submit" className="con g">sucesso</Button> 
+                                </form>
                             </div>               
                         </Card.Body>
                     </Card>  

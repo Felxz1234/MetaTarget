@@ -46,8 +46,46 @@ let deleteTask = (req,res)=>{
             console.log('deletado')
         }
     })
+
+    
     
 }
 
+let editar = (req,res)=>{
+
+    let nome = req.body.nome
+    let tarefa = req.body.tarefa
+    const id = req.params.id
+
+    let SQL = `update meta
+    set nome =? , tarefa = ?
+    where id =?`
+
+    sql.query(SQL,[nome,tarefa,id],(error)=>{
+        if(error){
+            console.log(error)
+        }
+    })
+
+}
+
+let editState = (req,res)=>{
+
+    let id = req.params.id
+
+    let estado = req.body.state
+
     
-module.exports = {showall,submitMeta,deleteTask}  
+    let SQL = `update meta
+    set realizado =? 
+    where id =?`
+
+    sql.query(SQL,[estado,id],(error)=>{
+        if(error){
+            console.log(error)
+        }
+    }) 
+
+}
+    
+module.exports = {showall,submitMeta,deleteTask,editar,editState}  
