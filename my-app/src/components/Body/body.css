@@ -53,6 +53,10 @@ h3{
     display: inline-block;
 }
 
+.g{
+    cursor: pointer;
+}
+
 .fra{
     background-color: rgb(68, 42, 42);
     border-style: none;

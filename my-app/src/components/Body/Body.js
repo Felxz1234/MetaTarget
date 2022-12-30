@@ -25,7 +25,7 @@ function Body(){
 
     async function handleSubmit(e){
 
-        e.preventDefault()
+     
         
        const response = await axios.post('http://localhost:5000/submit',{
             nome:nome,
@@ -37,8 +37,12 @@ function Body(){
         setTarefa('')
         setData('')
 
-        window.location.reload()
+        
 
+    }
+
+    async function deletarTask(id){
+        const deleted = await axios.delete(`http://localhost:5000/deleteTask/${id}`)
     }
 
     function handleChangeName(e){
@@ -92,12 +96,15 @@ function Body(){
                             <Card.Text>
                             <textarea>{t.tarefa}</textarea>
                             </Card.Text>
-                                <Button className="up ">editar</Button>  
-                                <Button className="bb " >deletar</Button> 
+                                <Button className="up g">editar</Button>  
+                                
+                                <Button name="id" onClick={()=>deletarTask(t.id)} className="bb g" >deletar</Button> 
+                                
+                              
                             
                             <div className="f">
-                                <Button className="fra ">fracassada</Button>      
-                                <Button className="con ">sucesso</Button> 
+                                <Button className="fra g">fracassada</Button>      
+                                <Button className="con g">sucesso</Button> 
                             </div>               
                         </Card.Body>
                     </Card>  

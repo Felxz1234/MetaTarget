@@ -30,5 +30,24 @@ let showall = (req,res)=>{
 
 }
 
+
+let deleteTask = (req,res)=>{
+
+    const id = req.params.id
+
+    console.log(id)
+
+    let SQL = `DELETE FROM meta WHERE id = ?`
+
+    sql.query(SQL,[id],(res,error)=>{
+        if(error){
+            console.log(error)
+        }else{
+            console.log('deletado')
+        }
+    })
     
-module.exports = {showall,submitMeta}  
+}
+
+    
+module.exports = {showall,submitMeta,deleteTask}  
