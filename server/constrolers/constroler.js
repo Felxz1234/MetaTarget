@@ -73,7 +73,7 @@ let editState = (req,res)=>{
 
     let id = req.params.id
 
-    let estado = req.body.state
+    let estado = req.body.estado
 
     
     let SQL = `update meta
@@ -85,7 +85,6 @@ let editState = (req,res)=>{
             console.log(error)
         }
     }) 
-
 }
     
 module.exports = {showall,submitMeta,deleteTask,editar,editState}  

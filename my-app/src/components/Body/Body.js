@@ -24,7 +24,7 @@ function Body(){
     const [tarefa, setTarefa] = useState('')
     const [tempo, setData]= useState('')
     const [tasks, setAllTasks] = useState([])
-    const[realizado,setRealizado] = useState('')
+    
 
     async function handleSubmit(e){
 
@@ -53,6 +53,12 @@ function Body(){
         const response = await axios.post(`http://localhost:5000/editar/${id}`,{
             nome:nome,
             tarefa:tarefa
+        })
+    }
+
+    async function handleState(id,realizado){
+        const response = await axios.post(`http://localhost:5000/editSituasion/${id}`,{
+            estado:realizado
         })
     }
 
@@ -88,9 +94,7 @@ function Body(){
                                 <input onChange={handleChangeName} name="nome" className="nome" placeholder="nome"></input>
                                 <input onChange={handleChangedate} name="tempo" className="data" type={'date'} ></input>
                                 <button onClick={handleSubmit} type="submit" className="enviar">enviar</button>
-                            </form>
-                
-                                      
+                            </form>                                     
                     </Card.Body>
                  </Card> 
                 
@@ -104,6 +108,7 @@ function Body(){
                             <Card.Title className=""><input onChange={handleChangeName} className="nombre" name="nome"  placeholder={t.nome}></input></Card.Title>
                             <h3>termine até:</h3>
                             <h3>{t.tempo}</h3>
+                            <h3>situação:{t.realizado}</h3>
                             <Card.Text>
                             <textarea onChange={handleChangeTask}>{t.tarefa}</textarea>
                             </Card.Text>
@@ -118,9 +123,9 @@ function Body(){
                               
                             
                             <div className="f">
-                                <form onSubmit={handleState}>
-                                    <Button type="submit" className="fra g">fracassada</Button>      
-                                    <Button type="submit" className="con g">sucesso</Button> 
+                                <form >
+                                    <Button onClick={()=>handleState(t.id,'fracassada')} type="submit" className="fra g">fracassada</Button>      
+                                    <Button onClick={()=>handleState(t.id,'realizado')} type="submit" className="con g">sucesso</Button> 
                                 </form>
                             </div>               
                         </Card.Body>
