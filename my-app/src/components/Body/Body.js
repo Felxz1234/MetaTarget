@@ -2,7 +2,6 @@ import React from "react"
 import './body.css'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import api from "../../services/api";
 import { useState,useEffect } from "react";
 import axios from "axios";
 
@@ -12,10 +11,12 @@ function Body(){
         getAllMetas()
     },[])
 
+
+    const [tasks, setAllTasks] = useState([])
+
     async function getAllMetas(){
-
         const response = await axios.get('http://localhost:5000/')
-
+        setAllTasks(response.data)
     }
 
     const [nome,setNome] = useState('')
@@ -64,7 +65,7 @@ function Body(){
             <div className="adicionar">
                <Card className="carta2" style={{ width: '18rem' }}>
                     <Card.Body>
-                        <Card.Title className="titu">criar meta</Card.Title>
+                        <Card.Title className="titulo">criar meta</Card.Title>
                         <Card.Text>
                         </Card.Text>
                             <form>
@@ -76,22 +77,32 @@ function Body(){
                 
                                       
                     </Card.Body>
-                 </Card>    
+                 </Card> 
+                
             </div>
 
             <div className="notas">
-               {/* <Card className="carta" style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title className="titu">criar meta</Card.Title>
-                        <Card.Text>
-                           <textarea ></textarea>
-                        </Card.Text>
-                        <Button></Button>      
-                        <Button></Button>  
-                        <Button></Button>  
-                        <Button></Button>                  
-                    </Card.Body>
-                 </Card>   */}
+
+                {tasks.map((t)=>
+                    <Card className="carta" style={{ width: '18rem' }}>
+                        <Card.Body>
+                            <Card.Title className="titu ">{t.nome}</Card.Title>
+                            <h3>termine até:</h3>
+                            <h3>{t.tempo}</h3>
+                            <Card.Text>
+                            <textarea>{t.tarefa}</textarea>
+                            </Card.Text>
+                                <Button className="up ">editar</Button>  
+                                <Button className="bb " >deletar</Button> 
+                            
+                            <div className="f">
+                                <Button className="fra ">fracassada</Button>      
+                                <Button className="con ">sucesso</Button> 
+                            </div>               
+                        </Card.Body>
+                    </Card>  
+                )}
+
             </div>              
         </div>
     )
