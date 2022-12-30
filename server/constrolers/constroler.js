@@ -14,21 +14,17 @@ let showall = (req,res)=>{
     })
 }
     
-let submitMeta = (req,res)=>{
+ let  submitMeta = (req,res)=>{
 
-    const {nome,tarefa,tempo} = req.body;
-
-    if(!nome || !data || !meta){
+    if(!req.body.nome || !req.body.tempo|| !req.body.tarefa){
         return res.status(400).send('informe os campos necessarios')
     }
 
-    let SQL = `INSERT INTO META VALUES('Default','${nome}','${tarefa}','${tempo}','Default')`
+    let SQL = `INSERT INTO meta VALUES(default,?,?,?,default)`
 
-    sql.query(SQL,(error,result)=>{
+    sql.query(SQL,[req.body.nome,req.body.tarefa,req.body.tempo],(error,result)=>{
         if(error){
             console.log(error)
-        }else{
-           res.send('adicionado')            
         }
     })
 

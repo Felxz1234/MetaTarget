@@ -5,7 +5,7 @@ const controller = require('../constrolers/constroler')
 
 
 router.get('/',controller.showall)
-router.post('/',controller.submitMeta)
+router.post('/submit',controller.submitMeta)
 
 
 
