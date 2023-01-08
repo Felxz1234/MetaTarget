@@ -2,7 +2,7 @@
      # MetaTarget
 
 
-     projeto, aonde voce pode adicionar metas para cumprir
+     adicione suas metas para cumprir.
 </div>
 
 
