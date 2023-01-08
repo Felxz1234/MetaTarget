@@ -1,10 +1,11 @@
-import React from "react"
-import './body.css'
+import React from "react";
+import './body.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { useState,useEffect } from "react";
 import axios from "axios";
-import './footer.css'
+import './footer.css';
+import moment from 'moment';
 
 function Body(){
 
@@ -19,12 +20,15 @@ function Body(){
         const response = await axios.get(`http://localhost:5000/`)
         setAllTasks(response.data)
         setEstado('/')
+        setCor('blue')
+
     }
 
     async function getAllConclu(){
         const response = await axios.get(`http://localhost:5000/realizado`)
         setAllTasks(response.data)
         setEstado('realizado')
+        setCor('verde')
     }
 
 
@@ -32,6 +36,7 @@ function Body(){
         const response = await axios.get(`http://localhost:5000/andamento`)
         setAllTasks(response.data)
         setEstado('andamento')
+        setCor('gray')
     }
 
 
@@ -39,6 +44,7 @@ function Body(){
         const response = await axios.get(`http://localhost:5000/fracassada`)
         setAllTasks(response.data)
         setEstado('fracassada')
+        setCor('red')
     }
     
     
@@ -46,6 +52,7 @@ function Body(){
     const [tarefa, setTarefa] = useState('')
     const [tempo, setData]= useState('')
     const [tasks, setAllTasks] = useState([])
+    const [cor,setCor] = useState('blue')
     
 
     async function handleSubmit(e){
@@ -117,18 +124,17 @@ function Body(){
                                 <button onClick={handleSubmit} type="submit" className="enviar">enviar</button>
                             </form>                                     
                     </Card.Body>
-                 </Card> 
-                
-            </div>
+                 </Card>             
+        </div>
 
             <div className="notas">
 
                 {tasks.map((t)=>
-                    <Card className="carta" style={{ width: '18rem' }}>
+                    <Card className={`carta ${cor}`}style={{ width: '18rem' }}>
                         <Card.Body>
                             <Card.Title className=""><input onChange={handleChangeName} className="nombre" name="nome"  placeholder={t.nome}></input></Card.Title>
                             <h3>termine até:</h3>
-                            <h3>{t.tempo}</h3>
+                            <h3>{moment(t.tempo).utc().format('YYYY-MM-DD')}</h3>
                             <h3>situação:{t.realizado}</h3>
                             <Card.Text>
                             <textarea onChange={handleChangeTask}>{t.tarefa}</textarea>
@@ -164,6 +170,7 @@ function Body(){
                   </div> 
             </div>              
         </div>
+
     )
 }
 
@@ -171,3 +178,5 @@ function Body(){
 
 
 export default Body
+
+

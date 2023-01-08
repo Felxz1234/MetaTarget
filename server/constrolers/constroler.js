@@ -26,7 +26,6 @@ let showafailed = (req,res)=>{
     })
 }
 
-
 let showaAndamento = (req,res)=>{
     let SQL = "SELECT *FROM meta WHERE realizado = 'andamento'"
 
@@ -52,8 +51,7 @@ let showaSuccess = (req,res)=>{
     })
 }
     
-    
-    
+
  let  submitMeta = (req,res)=>{
 
     if(!req.body.nome || !req.body.tempo|| !req.body.tarefa){
@@ -86,9 +84,6 @@ let deleteTask = (req,res)=>{
             console.log('deletado')
         }
     })
-
-    
-    
 }
 
 let editar = (req,res)=>{
