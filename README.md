@@ -1,7 +1,9 @@
-# MetaTarget
+<div align="center">
+     # MetaTarget
 
 
-projeto, aonde voce pode adicionar metas para cumprir
+     projeto, aonde voce pode adicionar metas para cumprir
+</div>
 
 
 <div align="center">
